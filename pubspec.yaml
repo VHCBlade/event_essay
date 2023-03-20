@@ -1,0 +1,23 @@
+name: event_essay
+description: A package that implements markdown widgets to be used with event_bloc
+version: 0.1.0
+homepage:
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  event_bloc: ^4.2.0
+  flutter_markdown: ^0.6.14
+  provider: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
