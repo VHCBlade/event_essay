@@ -1,14 +1,12 @@
 import 'package:event_bloc/event_bloc_widgets.dart';
-import 'package:event_essay/src/text_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 
 import '../event_essay.dart';
-import 'essay_text.dart';
 
-const ASSETS_IMG_PATH = 'assets/img/';
-const ASSETS_TEXT_PATH = ['assets', 'text'];
+const assetImagePath = 'assets/img/';
+const assetTextPath = ['assets', 'text'];
 
 class EssayLayout extends StatelessWidget {
   final Widget child;
@@ -74,7 +72,7 @@ class EssayScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context, channel) {
-        final textPath = <String>[...ASSETS_TEXT_PATH, ...path];
+        final textPath = <String>[...assetTextPath, ...path];
         final repo = context.read<TextRepository>();
         final bloc = PageTextBloc(
             parentChannel: channel, repository: repo, path: textPath);
@@ -87,7 +85,7 @@ class EssayScreen extends StatelessWidget {
       },
       child: EssayScroll(
         child: EssayContent(
-          imagePath: "$ASSETS_IMG_PATH${path.reduce((a, b) => '$a/$b')}",
+          imagePath: "$assetImagePath${path.reduce((a, b) => '$a/$b')}",
           trailing: trailing,
           leading: leading,
         ),
