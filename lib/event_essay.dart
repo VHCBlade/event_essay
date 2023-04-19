@@ -6,3 +6,4 @@ export 'src/events.dart';
 export 'src/scrollbar_provider.dart';
 export 'src/text_bloc.dart';
 export 'src/text_repository.dart';
+export 'src/url_repository.dart';
