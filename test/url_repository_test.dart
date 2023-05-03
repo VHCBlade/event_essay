@@ -18,6 +18,11 @@ Map<String, List<String> Function()> get commonTestCases => {
       "With https://": () =>
           ["https://reviewer.vhcblade.com", "https://vhcblade.com/#/apps"],
       "With ftp://": () => ["ftp://example.com", "ftp://vhcblade.com"],
+      "With mailto:": () => [
+            "mailto:test@example.com",
+            "mailto:123@example.com",
+            "mailto:great",
+          ]
     };
 
 void prefixTest() {

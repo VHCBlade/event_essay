@@ -1,3 +1,7 @@
+## 0.1.2
+
+* Added mailto: support for UrlLauncherRepository
+
 ## 0.1.1
 
 * Added UrlLauncherRepository and corresponding tests

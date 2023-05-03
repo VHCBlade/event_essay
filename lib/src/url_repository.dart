@@ -26,6 +26,9 @@ class UrlLauncherRepository extends Repository {
     if (regExp.hasMatch(target)) {
       return target;
     }
+    if (target.startsWith("mailto:")) {
+      return target;
+    }
 
     return "https://$target";
   }
