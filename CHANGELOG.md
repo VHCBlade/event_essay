@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Added arguments to EssayScroll
+
 ## 0.1.2
 
 * Added mailto: support for UrlLauncherRepository

@@ -27,19 +27,27 @@ class EssayLayout extends StatelessWidget {
 
 class EssayScroll extends StatelessWidget {
   final Widget child;
+  final AlignmentGeometry alignment;
+  final BoxConstraints constraints;
 
-  const EssayScroll({Key? key, required this.child}) : super(key: key);
+  const EssayScroll({
+    Key? key,
+    required this.child,
+    this.alignment = Alignment.center,
+    this.constraints = const BoxConstraints(maxWidth: 1200),
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ScrollbarProvider(
       isAlwaysShown: true,
-      builder: (controller, _) => Center(
+      builder: (controller, _) => Align(
+        alignment: alignment,
         child: SingleChildScrollView(
           controller: controller,
           child: EssayLayout(
             child: Container(
-                constraints: const BoxConstraints(maxWidth: 1200),
+                constraints: constraints,
                 padding: const EdgeInsets.all(30),
                 child: child),
           ),
