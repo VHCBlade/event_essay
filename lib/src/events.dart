@@ -3,6 +3,7 @@ import 'package:event_bloc/event_bloc.dart';
 enum EssayEvent<T> {
   updateScroll<void>(),
   loadTextFile<void>(),
+  updateEssayPath<List<String>>(),
   url<String>(),
   ;
 

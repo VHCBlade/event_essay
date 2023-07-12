@@ -1,3 +1,7 @@
+## 0.1.5
+
+* Fixed Issue causing EssayScreens that have their arguments changed wouldn't update correctly.
+
 ## 0.1.4
 
 * Added errorResult to TextRepository

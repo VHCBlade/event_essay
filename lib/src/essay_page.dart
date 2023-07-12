@@ -60,7 +60,7 @@ class EssayScroll extends StatelessWidget {
 /// Requires that you place your images in 'assets/image/' and your markdown in 'assets/text/'
 ///
 /// Requires that you place a [TextRepository] somewhere in the [BuildContext]
-class EssayScreen extends StatelessWidget {
+class EssayScreen extends StatefulWidget {
   final List<String> path;
   final List<Widget> leading;
   final List<Widget> trailing;
@@ -69,22 +69,38 @@ class EssayScreen extends StatelessWidget {
   ///
   /// [leading] is placed in a row before the content loaded in the manifest.
   /// [trailing] is placed in a row after the content loaded in the manifest.
-  const EssayScreen(
-      {Key? key,
-      required this.path,
-      this.trailing = const [],
-      this.leading = const []})
-      : super(key: key);
+  const EssayScreen({
+    Key? key,
+    required this.path,
+    this.trailing = const [],
+    this.leading = const [],
+  }) : super(key: key);
+
+  @override
+  State<EssayScreen> createState() => _EssayScreenState();
+}
+
+class _EssayScreenState extends State<EssayScreen> {
+  late final BlocEventChannel eventChannel;
+
+  List<String> get textPath => <String>[...assetTextPath, ...widget.path];
+
+  @override
+  void didUpdateWidget(EssayScreen screen) {
+    super.didUpdateWidget(screen);
+
+    eventChannel.fireEvent(EssayEvent.updateEssayPath.event, textPath);
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context, channel) {
-        final textPath = <String>[...assetTextPath, ...path];
         final repo = context.read<TextRepository>();
         final bloc = PageTextBloc(
             parentChannel: channel, repository: repo, path: textPath);
 
+        eventChannel = bloc.eventChannel;
         bloc.eventChannel.fireEvent<void>(EssayEvent.loadTextFile.event, null);
 
         bloc.blocUpdated.add(() => bloc.eventChannel
@@ -93,9 +109,9 @@ class EssayScreen extends StatelessWidget {
       },
       child: EssayScroll(
         child: EssayContent(
-          imagePath: "$assetImagePath${path.reduce((a, b) => '$a/$b')}",
-          trailing: trailing,
-          leading: leading,
+          imagePath: "$assetImagePath${widget.path.reduce((a, b) => '$a/$b')}",
+          trailing: widget.trailing,
+          leading: widget.leading,
         ),
       ),
     );
