@@ -1,3 +1,7 @@
+## 0.1.4
+
+* Added errorResult to TextRepository
+
 ## 0.1.3
 
 * Added arguments to EssayScroll

@@ -6,6 +6,12 @@ abstract class TextRepository extends Repository {
 }
 
 class DefaultTextRepository extends TextRepository {
+  final String errorResult;
+
+  DefaultTextRepository({
+    this.errorResult = '# Sorry, we were unable to find the provided text...',
+  });
+
   /// Loads all text files from the given path.
   @override
   Future<String> loadText(List<String> path) async {
@@ -14,7 +20,9 @@ class DefaultTextRepository extends TextRepository {
     final fullPath = path.reduce((a, b) => "$a/$b");
     final mdFile = "$fullPath.md";
 
-    return await rootBundle.loadString(mdFile);
+    return await rootBundle
+        .loadString(mdFile)
+        .onError((error, stackTrace) => errorResult);
   }
 
   @override
