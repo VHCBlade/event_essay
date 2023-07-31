@@ -1,10 +1,10 @@
 name: event_essay
 description: A package that implements markdown widgets to be used with event_bloc
-version: 0.1.5
+version: 0.1.6
 homepage: https://github.com/VHCBlade/event_essay
 
 environment:
-  sdk: '>=2.19.4 <3.0.0'
+  sdk: '>=2.19.4 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:

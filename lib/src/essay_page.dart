@@ -94,20 +94,21 @@ class _EssayScreenState extends State<EssayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context, channel) {
-        final repo = context.read<TextRepository>();
-        final bloc = PageTextBloc(
-            parentChannel: channel, repository: repo, path: textPath);
+    return EssayScroll(
+      child: BlocProvider(
+        create: (context, channel) {
+          final repo = context.read<TextRepository>();
+          final bloc = PageTextBloc(
+              parentChannel: channel, repository: repo, path: textPath);
 
-        eventChannel = bloc.eventChannel;
-        bloc.eventChannel.fireEvent<void>(EssayEvent.loadTextFile.event, null);
+          eventChannel = bloc.eventChannel;
+          bloc.eventChannel
+              .fireEvent<void>(EssayEvent.loadTextFile.event, null);
 
-        bloc.blocUpdated.add(() => bloc.eventChannel
-            .fireEvent<void>(EssayEvent.updateScroll.event, null));
-        return bloc;
-      },
-      child: EssayScroll(
+          bloc.blocUpdated.add(() => bloc.eventChannel
+              .fireEvent<void>(EssayEvent.updateScroll.event, null));
+          return bloc;
+        },
         child: EssayContent(
           imagePath: "$assetImagePath${widget.path.reduce((a, b) => '$a/$b')}",
           trailing: widget.trailing,

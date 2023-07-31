@@ -1,3 +1,7 @@
+## 0.1.6
+
+* Fixed ordering issue with EssayScreen 
+
 ## 0.1.5
 
 * Fixed Issue causing EssayScreens that have their arguments changed wouldn't update correctly.
